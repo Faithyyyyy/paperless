@@ -82,7 +82,7 @@ export default function LoginPage() {
         </form>
 
         <p style={styles.switchText}>
-          Don't have an account?{" "}
+          Don&apos;t have an account?
           <Link href="/auth/register" style={styles.link}>
             Create one
           </Link>

@@ -330,13 +330,24 @@ export function ReceiptPDF({ receipt, qrDataUrl }: ReceiptPDFProps) {
             <View>
               <Text style={styles.shopName}>{receipt.vendor.name}</Text>
               <Text style={styles.shopSub}>
-                {[receipt.vendor.city, receipt.vendor.address, receipt.vendor.phone]
+                {[
+                  receipt.vendor.city,
+                  receipt.vendor.address,
+                  receipt.vendor.phone,
+                ]
                   .filter(Boolean)
                   .join("  ·  ")}
               </Text>
             </View>
             <View>
-              <Text style={{ fontSize: 9, color: "rgba(255,255,255,0.5)", textAlign: "right", marginBottom: 2 }}>
+              <Text
+                style={{
+                  fontSize: 9,
+                  color: "rgba(255,255,255,0.5)",
+                  textAlign: "right",
+                  marginBottom: 2,
+                }}
+              >
                 Powered by Paperless
               </Text>
             </View>
@@ -352,7 +363,9 @@ export function ReceiptPDF({ receipt, qrDataUrl }: ReceiptPDFProps) {
           <View style={styles.metaRow}>
             <Text style={styles.metaText}>
               {new Date(receipt.purchaseDate).toLocaleDateString("en-NG", {
-                day: "numeric", month: "long", year: "numeric",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
               })}
             </Text>
             <Text style={styles.metaText}>
@@ -375,10 +388,14 @@ export function ReceiptPDF({ receipt, qrDataUrl }: ReceiptPDFProps) {
               <Text style={styles.tableHeaderText}>Item</Text>
             </View>
             <View style={styles.colQty}>
-              <Text style={[styles.tableHeaderText, { textAlign: "center" }]}>Qty</Text>
+              <Text style={[styles.tableHeaderText, { textAlign: "center" }]}>
+                Qty
+              </Text>
             </View>
             <View style={styles.colPrice}>
-              <Text style={[styles.tableHeaderText, { textAlign: "right" }]}>Amount</Text>
+              <Text style={[styles.tableHeaderText, { textAlign: "right" }]}>
+                Amount
+              </Text>
             </View>
           </View>
 
@@ -420,13 +437,15 @@ export function ReceiptPDF({ receipt, qrDataUrl }: ReceiptPDFProps) {
           {/* QR Code + verify */}
           <View style={styles.qrSection}>
             {qrDataUrl && (
+              // eslint-disable-next-line jsx-a11y/alt-text
               <Image src={qrDataUrl} style={styles.qrImage} />
             )}
             <View style={styles.qrRight}>
               <Text style={styles.qrTitle}>Verify this receipt</Text>
               <Text style={styles.qrUrl}>{verifyUrl}</Text>
               <Text style={styles.qrHint}>
-                Scan the QR code or visit the link above to verify this receipt is authentic and unmodified.
+                Scan the QR code or visit the link above to verify this receipt
+                is authentic and unmodified.
               </Text>
             </View>
           </View>
@@ -435,11 +454,10 @@ export function ReceiptPDF({ receipt, qrDataUrl }: ReceiptPDFProps) {
           <View style={styles.tamperBox}>
             <Text style={styles.tamperTitle}>Tamper-proof certificate</Text>
             <Text style={styles.tamperSub}>
-              Issued {new Date(receipt.issuedAt).toLocaleDateString()} · Cryptographically sealed · Never modified
+              Issued {new Date(receipt.issuedAt).toLocaleDateString()} ·
+              Cryptographically sealed · Never modified
             </Text>
-            <Text style={styles.tamperHash}>
-              SHA-256: {receipt.hash}
-            </Text>
+            <Text style={styles.tamperHash}>SHA-256: {receipt.hash}</Text>
           </View>
         </View>
 
@@ -449,7 +467,9 @@ export function ReceiptPDF({ receipt, qrDataUrl }: ReceiptPDFProps) {
             {receipt.vendor.name}
             {receipt.vendor.city ? `  ·  ${receipt.vendor.city}` : ""}
           </Text>
-          <Text style={styles.footerRight}>Powered by Paperless · paperless.ng</Text>
+          <Text style={styles.footerRight}>
+            Powered by Paperless · paperless.ng
+          </Text>
         </View>
       </Page>
     </Document>

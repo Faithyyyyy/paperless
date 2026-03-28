@@ -5,9 +5,10 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import bcrypt from "bcryptjs";
 import { prisma } from "./prisma";
+import type { Adapter } from "next-auth/adapters";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma) as any,
+  adapter: PrismaAdapter(prisma) as Adapter,
   session: { strategy: "jwt" },
   secret: process.env.NEXTAUTH_SECRET,
 
@@ -41,7 +42,10 @@ export const authOptions: NextAuthOptions = {
           throw new Error("No account found with this email");
         }
 
-        const passwordMatch = await bcrypt.compare(credentials.password, user.password);
+        const passwordMatch = await bcrypt.compare(
+          credentials.password,
+          user.password,
+        );
         if (!passwordMatch) {
           throw new Error("Incorrect password");
         }

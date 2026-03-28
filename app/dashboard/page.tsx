@@ -22,7 +22,6 @@ const DELIVERY_OPTIONS = [
 
 export default function IssuePage() {
   const { data: session } = useSession();
-  const router = useRouter();
 
   const [buyerName, setBuyerName] = useState("");
   const [buyerPhone, setBuyerPhone] = useState("");

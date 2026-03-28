@@ -1,6 +1,6 @@
 // src/middleware/requireAuth.ts
 import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { withAuth } from "next-auth/middleware";

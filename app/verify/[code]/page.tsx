@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { ReceiptPDF } from "@/lib/receipt-pdf";
 import { pdf } from "@react-pdf/renderer";
+import Image from "next/image";
 
 type VerifyResult = {
   verified: boolean;
@@ -338,7 +339,14 @@ export default function VerifyPage({
               <div style={s.qrSection}>
                 <div style={s.qrLabel}>Scan to verify authenticity</div>
                 {qr ? (
-                  <img src={qr} alt="Verify QR Code" style={s.qrImage} />
+                  <Image
+                    src={qr}
+                    alt="Verify QR Code"
+                    width={140}
+                    height={140}
+                    style={s.qrImage}
+                    unoptimized
+                  />
                 ) : (
                   <div style={s.qrPlaceholder}>Loading QR...</div>
                 )}
